@@ -1,0 +1,8 @@
+[include]
+	path = ~/.config/git/global
+[includeIf "gitdir:~/dotfiles/"]
+	path = ~/.config/git/github
+[includeIf "gitdir:~/Workspaces/eom/"]
+	path = ~/.config/git/eom
+[includeIf "gitdir:~/Workspaces/github/"]
+	path = ~/.config/git/github

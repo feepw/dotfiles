@@ -1,0 +1,36 @@
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+	prunTags = true
+	all = true
+[log]
+	date = iso
+[commit]
+	verbose = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[rebase]
+	autoSequash = true
+	autoStash = true
+	updateRefs = true
+[merge]
+	conflictstyle = zdiff3
+[url "git@codeup.aliyun.com:625e35b264c8a06be2d44ae9/"]
+	insteadOf = https://codeup.aliyun.com/625e35b264c8a06be2d44ae9/
