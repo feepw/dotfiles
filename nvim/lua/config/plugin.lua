@@ -38,10 +38,24 @@ vim.pack.add({
   'https://github.com/lewis6991/gitsigns.nvim'
 })
 
-require('nvim-treesitter').setup {
+-- TreeSitter
+local treesitter = require('nvim-treesitter')
+treesitter.setup {
   -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
   install_dir = vim.fn.stdpath('data') .. '/site'
 }
+treesitter.install(vim.g.enabled_languages)
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = vim.g.enabled_languages,
+  callback = function(ev)
+    if pcall(vim.treesitter.start, ev.buf) then
+      vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      vim.wo[0][0].foldmethod = 'expr'
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
+  end,
+  group = vim.api.nvim_create_augroup('TreeSitter', { clear = false }),
+})
 
 require('fzf-lua').setup { fzf_colors = true }
 require('gitsigns').setup {}
@@ -49,14 +63,7 @@ require('gruvbox-material').setup {}
 require('lazydev').setup {}
 require('mason').setup {}
 require('mason-lspconfig').setup {
-  ensure_installed = {
-    'clangd', -- optional for C/C++
-    'gopls',  -- optional for Golang
-    'ty',     -- optional for Python
-    'rust_analyzer',
-    'lua_ls',
-    'stylua',
-  }
+  ensure_installed = require 'config.common'.language_servers(vim.g.enabled_languages)
 }
 require('nvim-surround').setup {}
 require('quicker').setup {}
