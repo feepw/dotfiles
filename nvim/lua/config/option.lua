@@ -57,3 +57,6 @@ vim.o.confirm = true
 vim.go.splitbelow = true
 vim.go.splitright = true
 
+-- Fold
+vim.go.foldlevelstart = 99
+
