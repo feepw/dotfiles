@@ -3,12 +3,15 @@ local M = vim.empty_dict()
 local lsp_mapping = {
   c = { 'clangd' },
   cpp = { 'clangd' },
+  css = { 'cssls' },
   go = { 'gopls' },
+  html = { 'html' },
   json = { 'jsonls' },
   lua = { 'lua_ls', 'stylua' },
   php = { 'intelephense' },
   python = { 'ty' },
   rust = { 'rust-analyzer' },
+  vue = { 'vue_ls', 'ts_ls' },
   yaml = { 'yamlls' }
 }
 
